@@ -15,56 +15,74 @@ The goals / steps of this project are the following:
 * Run your pipeline on a video stream (start with the test_video.mp4 and later implement on full project_video.mp4) and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
 * Estimate a bounding box for vehicles detected.
 
-[//]: # (Image References)
-[image1]: ./examples/car_not_car.png
-[image2]: ./examples/HOG_example.jpg
-[image3]: ./examples/sliding_windows.jpg
-[image4]: ./examples/sliding_window.jpg
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
-[video1]: ./project_video.mp4
-
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
-### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
 ---
 ### Writeup / README
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
+#### [writeup.md](https://github.com/veegit/CarND-Vehicle-Detection/blob/master/writeup.md) 
 
-You're reading it!
 
 ### Histogram of Oriented Gradients (HOG)
 
 #### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
-The code for this step is contained in the first code cell of the IPython notebook (or in lines # through # of the file called `some_file.py`).  
+Code for extracting HOG_features which was pretty much taken from the project videos
 
-I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
+````
+def get_hog_features(img, orient, pix_per_cell, cell_per_block, vis=False, feature_vec=True):
+    if vis == True:
+        features, hog_image = hog(img, orientations=orient, pixels_per_cell=(pix_per_cell, pix_per_cell),
+                                  cells_per_block=(cell_per_block, cell_per_block), transform_sqrt=False, 
+                                  visualise=True, feature_vector=False)
+        return features, hog_image
+    else:      
+        features = hog(img, orientations=orient, pixels_per_cell=(pix_per_cell, pix_per_cell),
+                       cells_per_block=(cell_per_block, cell_per_block), transform_sqrt=False, 
+                       visualise=False, feature_vector=feature_vec)
+        return features
+````
+This uses the `skimage.feature.hog` method from skimage library
 
-![alt text][image1]
+This method was called from `extract_features` method which fetches the HOG features for all channels on the images from training data. The following image below shows the HOG features for YUV channels. The reason for choosing YUV channel is explained later
 
-I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
+Here is an example using the `YUV` color space and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
-Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
-
-
-![alt text][image2]
+![alt text][report_images/yuv_hog.png]
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters and...
+I used the exact HOG parameters mentioned in the project video and it gave excellent results on the test images and test video. Only thing I modified was color space, I tried RGB, HLS and YUV space. YUV gave me better result on test images
+
+#### RGB
+![alt text][report_images/rgb.png]
+
+#### YUV
+![alt text][report_images/yuv.png]
+
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using...
+I used the same linear classifer provided in project videos code and used all the color histogram, bin spatial and HOG 3-channel YUV features. 
+
+````
+svc = LinearSVC()
+````
+
+````
+27.72 Seconds to train SVC...
+Test Accuracy of SVC =  0.9892
+My SVC predicts:  [ 0.  0.  0.  0.  0.  1.  1.  0.  0.  0.]
+For these 10 labels:  [ 0.  0.  0.  0.  0.  1.  1.  0.  0.  0.]
+0.00681 Seconds to predict 10 labels with SVC
+````
+
 
 ### Sliding Window Search
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I decided to search random window positions at random scales all over the image and came up with this (ok just kidding I didn't actually ;):
+The sliding windows search was implemented in the `find_cars` method. 
 
 ![alt text][image3]
 
