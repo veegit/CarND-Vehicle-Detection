@@ -93,18 +93,19 @@ Also how normalization of data changed the distribution
 The sliding windows search was implemented in the `find_cars` method. 
 
 | # | Step |
-| 1 | Find Image Area to investigate (whi as abovech is from ytop = 400 to ybottom = 656)
-| 2 | Define blocks and steps with 64 as the orginal sampling rate, with 8 cells and 8 pix per cell
-| 3 | Compute hog features for each channel on whole image
-| 4 | Extract the hog features, color features for the region defined in 1
+| ------------- | ------------- |
+| 1 | Find Image Area to investigate (whi as abovech is from ytop = 400 to ybottom = 656) |
+| 2 | Define blocks and steps with 64 as the orginal sampling rate, with 8 cells and 8 pix per cell |
+| 3 | Compute hog features for each channel on whole image |
+| 4 | Extract the hog features, color features for the region defined in 1 |
 | 5 | Transform the data | 
-| 6 | Run the classifier on the transformed data and get prediction
-| 7 | If prediction is a car, the get the rectangle coordinates and add it to the list
-| 8 | Send the rectangles to draw the bounding boxes as per `boxed_image` method
-| 9 | Run the aboves steps for all scales
-| 10| Generate heatmap for all boxes `add_heat`
-| 11 | Apply threshold to help remove false positives on heatmap
-| 12 | Find final boxes from heatmap using label function and draw final box `draw_labeled_bboxes`
+| 6 | Run the classifier on the transformed data and get prediction |
+| 7 | If prediction is a car, the get the rectangle coordinates and add it to the list |
+| 8 | Send the rectangles to draw the bounding boxes as per `boxed_image` method |
+| 9 | Run the aboves steps for all scales |
+| 10 | Generate heatmap for all boxes `add_heat` |
+| 11 | Apply threshold to help remove false positives on heatmap |
+| 12 | Find final boxes from heatmap using label function and draw final box `draw_labeled_bboxes` |
 
 This is an example of different scales drew the boxes around the image
 ![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/scales.png)
