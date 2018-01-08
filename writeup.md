@@ -76,15 +76,17 @@ My SVC predicts:  [ 0.  0.  0.  0.  0.  1.  1.  0.  0.  0.]
 For these 10 labels:  [ 0.  0.  0.  0.  0.  1.  1.  0.  0.  0.]
 0.00681 Seconds to predict 10 labels with SVC
 ````
+##### Example of car vs non-car feature
 
-These are plots for some of the features along with HOG features
+![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/car-vs-noncar.png)
 
-`bin-spatial`
+##### This is plots for some of the features along with HOG features - bin-spatial`
+
 ![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/bin-spatial-rgbvsyuv.png)
 
-Also how normalization of data changed the distribution
+##### Also how normalization of data changed the distribution
 
-![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/raw-vs-normalized.png.png)
+![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/raw-vs-normalized.png)
 
 ### Sliding Window Search
 
@@ -111,9 +113,11 @@ This is an example of different scales drew the boxes around the image
 ![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/scales.png)
 
 This is image after step 8
+
 ![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/sliding-window.png)
 
 This is image after step 12
+
 ![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/pipleline.png.png)
 
 
