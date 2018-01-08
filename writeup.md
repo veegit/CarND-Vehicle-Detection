@@ -48,17 +48,17 @@ This method was called from `extract_features` method which fetches the HOG feat
 
 Here is an example using the `YUV` color space and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
-![alt text][https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/yuv_hog.png]
+![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/yuv_hog.png)
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
 I used the exact HOG parameters mentioned in the project video and it gave excellent results on the test images and test video. Only thing I modified was color space, I tried RGB, HLS and YUV space. YUV gave me better result on test images
 
 #### RGB
-![alt text]https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/rgb.png]
+![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/rgb.png)
 
 #### YUV
-![alt text][https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/yuv.png]
+![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/yuv.png)
 
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
