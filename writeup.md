@@ -80,7 +80,7 @@ For these 10 labels:  [ 0.  0.  0.  0.  0.  1.  1.  0.  0.  0.]
 
 ![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/car-vs-noncar.png)
 
-##### This is plots for some of the features along with HOG features - bin-spatial`
+##### These are  the bin spatial features for RGB vs YUV 
 
 ![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/bin-spatial-rgbvsyuv.png)
 
@@ -118,7 +118,7 @@ This is image after step 8
 
 This is image after step 12
 
-![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/pipleline.png.png)
+![alt text](https://raw.githubusercontent.com/veegit/CarND-Vehicle-Detection/master/report_images/pipleline.png)
 
 
 
